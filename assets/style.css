@@ -23,7 +23,8 @@
     border: 1px solid #ccc;
     padding: 10px;
     margin: 0 auto;
-    max-width: 800px; 
+    max-width: 800px;
+    top: auto;
 }
 
 #current-weather {
