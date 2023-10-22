@@ -19,7 +19,7 @@
 }
 
 .results-container {
-    text-align: center;
+    text-align: left;
     border: 1px solid #ccc;
     padding: 10px;
     margin: 0 auto;
@@ -27,7 +27,7 @@
 }
 
 #current-weather {
-    text-align: center;
+    text-align: left;
 }
 
 .forecast-container {
