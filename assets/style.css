@@ -35,3 +35,9 @@
     margin: 0 auto;
     max-width: 600px; 
 }
+
+.inline-block {
+    display: inline-block;
+    margin: 5px;
+  }
+  

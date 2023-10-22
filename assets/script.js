@@ -49,7 +49,7 @@ function getCoords(city) {
 }
 function displayForecastWeather(data) {
   const forecastContainer = document.getElementById("5-day-forecast");
-  forecastContainer.innerHTML = ""; 
+  forecastContainer.innerHTML = "";
 
   const forecastDataByDate = {};
 
@@ -71,12 +71,15 @@ function displayForecastWeather(data) {
       const temperature = element.main.temp + "F";
       const humidity = element.main.humidity + "%";
       const wind = element.wind.speed + "MPH";
+      const iconUrl = `https://openweathermap.org/img/w/${element.weather[0].icon}.png`;
 
       const forecastDiv = document.createElement("div");
       forecastDiv.classList.add("forecast-day");
+      forecastDiv.classList.add("inline-block");
 
       forecastDiv.innerHTML = `
         <p>Date: ${date}</p>
+        <img src="${iconUrl}" alt="Weather Icon">
         <p>Temperature: ${temperature}</p>
         <p>Humidity: ${humidity}</p>
         <p>Wind: ${wind}</p>
@@ -86,6 +89,8 @@ function displayForecastWeather(data) {
     }
   }
 }
+
+
 
 
 
