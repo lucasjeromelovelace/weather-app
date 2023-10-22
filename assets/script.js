@@ -41,18 +41,38 @@ function getCoords(city) {
               return response.json()
             }).then(function (data) {
               console.log(data)
-              displayForecastWeather(data)
+              displayForecastWeather(data.list)
             })
         })
 
     })
 }
-function displayForecastWeather(data){
-for (let index = 0; index < array.length; index+=8) {
-  const element = array[index];
-  createElementById 
+function displayForecastWeather(data) {
+  const forecastContainer = document.getElementById("5-day-forecast");
+  forecastContainer.innerHTML = ""; 
+
+  for (let i = 0; i < 24; i++) {
+    const element = data[i];
+    const dateUnix = element.dt;
+    const date = dayjs.unix(dateUnix).format("MM/DD/YYYY");
+    const temperature = element.main.temp + "F";
+    const humidity = element.main.humidity + "%";
+    const wind = element.wind.speed + "MPH";
+
+    const forecastDiv = document.createElement("div");
+    forecastDiv.classList.add("forecast-day");
+
+    forecastDiv.innerHTML = `
+      <p>Date: ${date}</p>
+      <p>Temperature: ${temperature}</p>
+      <p>Humidity: ${humidity}</p>
+      <p>Wind: ${wind}</p>
+    `;
+
+    forecastContainer.appendChild(forecastDiv);
+  }
 }
-}
+
 function displayCurrentWeather(data) {
   document.getElementById("cityname").textContent = data.name
   document.getElementById("date").textContent = dayjs.unix(data.dt).format("MM/DD/YYYY")
@@ -62,3 +82,5 @@ function displayCurrentWeather(data) {
   document.getElementById("wind").textContent = data.wind.speed + "MPH"
 }
 searchBtn.addEventListener("click", handleSearchSubmit)
+
+

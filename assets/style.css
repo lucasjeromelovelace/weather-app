@@ -1,0 +1,37 @@
+.header-container {
+    background-color: #007BFF;
+    border-top: 3px solid #0056b3;
+    text-align: center;
+    padding: 10px;
+}
+
+.header-container h1 {
+    color: #fff;
+}
+
+.search-container {
+    text-align: left;
+    padding: 10px;
+}
+
+.search-container p {
+    margin-bottom: 10px;
+}
+
+.results-container {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 800px; 
+}
+
+#current-weather {
+    text-align: center;
+}
+
+.forecast-container {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px; 
+}
