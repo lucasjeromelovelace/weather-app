@@ -12,10 +12,12 @@
 .search-container {
     text-align: left;
     padding: 10px;
+    width: 200px;
 }
 
 .search-container p {
     margin-bottom: 10px;
+    width: 200px;
 }
 
 .results-container {
@@ -49,5 +51,16 @@
     padding: 10px 20px; 
     cursor: pointer; 
   }
+
+  .city-box {
+    background-color: #e0e0e0; 
+    padding: 5px; 
+    margin: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    width: 200px;
+  }
+  
   
   
