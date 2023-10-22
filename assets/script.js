@@ -1,7 +1,9 @@
 
 const apiKey = "dbe70ed951c286d1b52a29ff59300528";
+const majorCitiesList = document.getElementById('major-cities-list');
 const searchInput = document.getElementById("search")
 const searchBtn = document.getElementById("searchbtn")
+
 // fetch(urlApi2)
 //   .then(function (response) {
 //     if (!response.ok) {
@@ -47,6 +49,38 @@ function getCoords(city) {
 
     })
 }
+
+const majorCities = [
+  "Atlanta",
+  "Denver",
+  "Seattle",
+  "San Francisco",
+  "Orlando",
+  "New York",
+  "Chicago",
+  "Austin",
+];
+
+majorCitiesList.addEventListener("click", (event) => {
+  if (event.target.tagName === "LI") {
+    searchInput.value = event.target.textContent;
+    searchButton.click(); 
+  }
+});
+
+function populateCitySelect() {
+  const citySelect = document.getElementById("major-cities");
+  
+  majorCities.forEach((city) => {
+    const option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    citySelect.appendChild(option);
+  });
+}
+
+window.addEventListener("load", populateCitySelect);
+
 function displayForecastWeather(data) {
   const forecastContainer = document.getElementById("5-day-forecast");
   forecastContainer.innerHTML = "";
