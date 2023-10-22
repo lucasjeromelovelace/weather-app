@@ -51,27 +51,43 @@ function displayForecastWeather(data) {
   const forecastContainer = document.getElementById("5-day-forecast");
   forecastContainer.innerHTML = ""; 
 
-  for (let i = 0; i < 24; i++) {
-    const element = data[i];
+  const forecastDataByDate = {};
+
+  data.forEach((element) => {
     const dateUnix = element.dt;
     const date = dayjs.unix(dateUnix).format("MM/DD/YYYY");
-    const temperature = element.main.temp + "F";
-    const humidity = element.main.humidity + "%";
-    const wind = element.wind.speed + "MPH";
 
-    const forecastDiv = document.createElement("div");
-    forecastDiv.classList.add("forecast-day");
+    if (!forecastDataByDate[date]) {
+      forecastDataByDate[date] = element;
+    }
+  });
 
-    forecastDiv.innerHTML = `
-      <p>Date: ${date}</p>
-      <p>Temperature: ${temperature}</p>
-      <p>Humidity: ${humidity}</p>
-      <p>Wind: ${wind}</p>
-    `;
+  const today = new Date();
+  for (let i = 0; i < 5; i++) {
+    const date = dayjs(today).add(i, 'day').format("MM/DD/YYYY");
 
-    forecastContainer.appendChild(forecastDiv);
+    if (forecastDataByDate[date]) {
+      const element = forecastDataByDate[date];
+      const temperature = element.main.temp + "F";
+      const humidity = element.main.humidity + "%";
+      const wind = element.wind.speed + "MPH";
+
+      const forecastDiv = document.createElement("div");
+      forecastDiv.classList.add("forecast-day");
+
+      forecastDiv.innerHTML = `
+        <p>Date: ${date}</p>
+        <p>Temperature: ${temperature}</p>
+        <p>Humidity: ${humidity}</p>
+        <p>Wind: ${wind}</p>
+      `;
+
+      forecastContainer.appendChild(forecastDiv);
+    }
   }
 }
+
+
 
 function displayCurrentWeather(data) {
   document.getElementById("cityname").textContent = data.name
