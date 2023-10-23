@@ -50,6 +50,7 @@
     padding: 10px 20px; 
     cursor: pointer; 
     margin-bottom: 2px;
+    margin-top: 2px;
     min-width: 30px;
   }
 
@@ -71,7 +72,7 @@
 }
 
 .container aside {
-    flex-basis: 25%;
+    flex-basis: 20%;
 }
   
   #current-weather {
@@ -80,5 +81,6 @@
 }
 
   #five-day-forecast {
-    flex-basis: 45%;
+    flex-basis: 60%;
+    margin: 10px;
   }
