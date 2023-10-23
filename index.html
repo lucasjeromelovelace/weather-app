@@ -14,7 +14,23 @@
             <h1> Weather Dashboard</h1>
         </div>
     </header>
-    <div class="results-container">
+    <div class="container">
+        <aside>
+            <div class="search-container">
+                <div class="search-container">
+                    <p>Search for a City:</p>
+                    <input id="search" type="text" placeholder="E.g., New York, London, etc.">
+                    <div>
+                        <button id="searchbtn" class="blue-button"><strong>Search</strong></button>
+                    </div>
+                </div>
+                <h2>Major US Cities</h2>
+                <div id="major-cities-list">
+                    
+                </div>
+
+            </div>
+        </aside>
         <section id="current-weather">
             <h2 id="cityname"></h2>
             <h3 id="date"></h3>
@@ -24,34 +40,9 @@
             <p id="wind"></p>
             <div id="div"></div>
         </section>
-    </div>
-    <div class="forecast-container">
-        <section id="5-day-forecast">
+        <section id="five-day-forecast">
             <h2>5 Day Forecast</h2>
     </div>
-    <aside>
-        <div class="search-container">
-            <div class="search-container">
-                <p>Search for a City:</p>
-                <input id="search" type="text" placeholder="E.g., New York, London, etc.">
-                <div>
-                    <button id="searchbtn" class="blue-button"><strong>Search</strong></button>
-                </div>
-            </div>
-            <h2>Major US Cities</h2>
-            <ul id="major-cities-list">
-                <li><div class="city-box">Atlanta</div></li>
-                <li><div class="city-box">Denver</div></li>
-                <li><div class="city-box">Seattle</div></li>
-                <li><div class="city-box">San Francisco</div></li>
-                <li><div class="city-box">Orlando</div></li>
-                <li><div class="city-box">New York</div></li>
-                <li><div class="city-box">Chicago</div></li>
-                <li><div class="city-box">Austin</div></li>
-            </ul>
-            
-        </div>
-    </aside>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
     integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="

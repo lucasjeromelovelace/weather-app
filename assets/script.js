@@ -1,9 +1,9 @@
 
 const apiKey = "dbe70ed951c286d1b52a29ff59300528";
-const majorCitiesList = document.getElementById('major-cities-list');
+const majorCitiesList = document.getElementById("major-cities-list");
 const searchInput = document.getElementById("search")
 const searchBtn = document.getElementById("searchbtn")
-
+let cities =JSON.parse(localStorage.getItem('cities')) || []
 // fetch(urlApi2)
 //   .then(function (response) {
 //     if (!response.ok) {
@@ -21,12 +21,27 @@ function handleSearchSubmit() {
   let city = searchInput.value
   getCoords(city)
 }
+function renderHistorybtns(){
+  majorCitiesList.innerHTML=""
+  cities.forEach(city=>{
+    let btn =document.createElement('button')
+    btn.textContent=city
+    btn.classList.add('blue-button')
+    majorCitiesList.appendChild(btn)
+  })
+}
+renderHistorybtns()
 function getCoords(city) {
   let urlApi1 = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
   fetch(urlApi1)
     .then(function (response) {
       return response.json()
     }).then(function (data) {
+      if (cities.indexOf(city)===-1){
+        cities.unshift(city)
+        localStorage.setItem('cities',JSON.stringify(cities))
+        renderHistorybtns()
+      }
       console.log(data)
       let lat = data[0].lat
       let lon = data[0].lon
@@ -64,7 +79,7 @@ const majorCities = [
 majorCitiesList.addEventListener("click", (event) => {
   if (event.target.tagName === "LI") {
     searchInput.value = event.target.textContent;
-    searchButton.click(); 
+    searchBtn.click(); 
   }
 });
 
@@ -82,30 +97,14 @@ function populateCitySelect() {
 window.addEventListener("load", populateCitySelect);
 
 function displayForecastWeather(data) {
-  const forecastContainer = document.getElementById("5-day-forecast");
+  const forecastContainer = document.getElementById("five-day-forecast");
   forecastContainer.innerHTML = "";
-
-  const forecastDataByDate = {};
-
-  data.forEach((element) => {
-    const dateUnix = element.dt;
-    const date = dayjs.unix(dateUnix).format("MM/DD/YYYY");
-
-    if (!forecastDataByDate[date]) {
-      forecastDataByDate[date] = element;
-    }
-  });
-
-  const today = new Date();
-  for (let i = 0; i < 5; i++) {
-    const date = dayjs(today).add(i, 'day').format("MM/DD/YYYY");
-
-    if (forecastDataByDate[date]) {
-      const element = forecastDataByDate[date];
-      const temperature = element.main.temp + "F";
-      const humidity = element.main.humidity + "%";
-      const wind = element.wind.speed + "MPH";
-      const iconUrl = `https://openweathermap.org/img/w/${element.weather[0].icon}.png`;
+  for (let i = 5; i < data.length; i+=8) {
+    const date = dayjs.unix(data[i].dt).format("MM/DD/YYYY");
+    const temperature = data[i].main.temp + "F";
+      const humidity = data[i].main.humidity + "%";
+      const wind = data[i].wind.speed + "MPH";
+      const iconUrl = `https://openweathermap.org/img/w/${data[i].weather[0].icon}.png`;
 
       const forecastDiv = document.createElement("div");
       forecastDiv.classList.add("forecast-day");
@@ -120,11 +119,13 @@ function displayForecastWeather(data) {
       `;
 
       forecastContainer.appendChild(forecastDiv);
-    }
   }
 }
 
-
+function handleHistoryClick(e){
+  if (!e.target.matches('.blue-button')) return
+  getCoords(e.target.textContent)
+}
 
 
 
@@ -138,4 +139,4 @@ function displayCurrentWeather(data) {
 }
 searchBtn.addEventListener("click", handleSearchSubmit)
 
-
+majorCitiesList.addEventListener('click', handleHistoryClick)
