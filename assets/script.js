@@ -32,7 +32,7 @@ function renderHistorybtns(){
 }
 renderHistorybtns()
 function getCoords(city) {
-  let urlApi1 = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+  let urlApi1 = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
   fetch(urlApi1)
     .then(function (response) {
       return response.json()
@@ -84,7 +84,7 @@ majorCitiesList.addEventListener("click", (event) => {
 });
 
 function populateCitySelect() {
-  const citySelect = document.getElementById("major-cities");
+  const citySelect = document.getElementById("major-cities-list");
   
   majorCities.forEach((city) => {
     const option = document.createElement("option");
