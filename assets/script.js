@@ -65,23 +65,13 @@ function getCoords(city) {
     })
 }
 
-const majorCities = [
-  "Atlanta",
-  "Denver",
-  "Seattle",
-  "San Francisco",
-  "Orlando",
-  "New York",
-  "Chicago",
-  "Austin",
-];
 
-majorCitiesList.addEventListener("click", (event) => {
-  if (event.target.tagName === "LI") {
-    searchInput.value = event.target.textContent;
-    searchBtn.click(); 
-  }
-});
+// majorCitiesList.addEventListener("click", (event) => {
+//   if (event.target.tagName === "LI") {
+//     searchInput.value = event.target.textContent;
+//     searchBtn.click(); 
+//   }
+// });
 
 function populateCitySelect() {
   const citySelect = document.getElementById("major-cities-list");
